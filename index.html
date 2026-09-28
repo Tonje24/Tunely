@@ -59,68 +59,78 @@
             <p class="eyebrow">PICKED FOR YOU</p>
             <h2 id="tracks-title">On rotation</h2>
           </div>
-          <span class="track-count">04 TRACKS</span>
+          <span class="track-count">05 TRACKS</span>
         </div>
 
-        <div class="track-list" role="list">
-          <article class="track-row" role="listitem">
+        <div class="track-list" aria-label="Songs">
+          <button class="track-row" type="button" data-track-index="0" data-title="Paper Orbit" data-artist="Mira Sol">
             <span class="track-number">01</span>
-            <div class="cover cover-citrus" role="img" aria-label="Abstract orange and pink album artwork"><span>DAY<br>GLOW</span></div>
-            <div class="track-info"><h3>Golden</h3><p>Jill Scott</p></div>
-            <span class="track-album">Beautifully Human</span>
-            <span class="track-duration">3:46</span>
-            <span class="track-more" aria-hidden="true">···</span>
-          </article>
-          <article class="track-row" role="listitem">
+            <span class="cover cover-citrus" aria-hidden="true"><span>PAPER<br>ORBIT</span></span>
+            <span class="track-info"><strong>Paper Orbit</strong><span>Mira Sol</span></span>
+            <span class="track-album">Little Weather</span>
+            <span class="track-duration">--:--</span>
+            <span class="track-more" aria-hidden="true">▶</span>
+          </button>
+          <button class="track-row" type="button" data-track-index="1" data-title="Velvet Transit" data-artist="June Harbor">
             <span class="track-number">02</span>
-            <div class="cover cover-blue" role="img" aria-label="Abstract blue album artwork"><span>SOFT<br>FOCUS</span></div>
-            <div class="track-info"><h3>Show Me How</h3><p>Men I Trust</p></div>
-            <span class="track-album">Show Me How</span>
-            <span class="track-duration">3:35</span>
-            <span class="track-more" aria-hidden="true">···</span>
-          </article>
-          <article class="track-row" role="listitem">
+            <span class="cover cover-blue" aria-hidden="true"><span>VELVET<br>TRANSIT</span></span>
+            <span class="track-info"><strong>Velvet Transit</strong><span>June Harbor</span></span>
+            <span class="track-album">Night Maps</span>
+            <span class="track-duration">--:--</span>
+            <span class="track-more" aria-hidden="true">▶</span>
+          </button>
+          <button class="track-row" type="button" data-track-index="2" data-title="Soft Static" data-artist="Orin Vale">
             <span class="track-number">03</span>
-            <div class="cover cover-lilac" role="img" aria-label="Abstract lilac album artwork"><span>AFTER<br>HOURS</span></div>
-            <div class="track-info"><h3>Borderline</h3><p>Tame Impala</p></div>
-            <span class="track-album">The Slow Rush</span>
-            <span class="track-duration">3:57</span>
-            <span class="track-more" aria-hidden="true">···</span>
-          </article>
-          <article class="track-row" role="listitem">
+            <span class="cover cover-lilac" aria-hidden="true"><span>SOFT<br>STATIC</span></span>
+            <span class="track-info"><strong>Soft Static</strong><span>Orin Vale</span></span>
+            <span class="track-album">The Quiet Signal</span>
+            <span class="track-duration">--:--</span>
+            <span class="track-more" aria-hidden="true">▶</span>
+          </button>
+          <button class="track-row" type="button" data-track-index="3" data-title="After the Rain" data-artist="Marlow Bloom">
             <span class="track-number">04</span>
-            <div class="cover cover-green" role="img" aria-label="Abstract green album artwork"><span>OPEN<br>ROAD</span></div>
-            <div class="track-info"><h3>Texas Sun</h3><p>Khruangbin, Leon Bridges</p></div>
-            <span class="track-album">Texas Sun</span>
-            <span class="track-duration">4:12</span>
-            <span class="track-more" aria-hidden="true">···</span>
-          </article>
+            <span class="cover cover-green" aria-hidden="true"><span>AFTER<br>THE RAIN</span></span>
+            <span class="track-info"><strong>After the Rain</strong><span>Marlow Bloom</span></span>
+            <span class="track-album">Rooms of Blue</span>
+            <span class="track-duration">--:--</span>
+            <span class="track-more" aria-hidden="true">▶</span>
+          </button>
+          <button class="track-row" type="button" data-track-index="4" data-title="Satellite Hearts" data-artist="Nia Wren">
+            <span class="track-number">05</span>
+            <span class="cover cover-rose" aria-hidden="true"><span>SATELLITE<br>HEARTS</span></span>
+            <span class="track-info"><strong>Satellite Hearts</strong><span>Nia Wren</span></span>
+            <span class="track-album">Anywhere Between</span>
+            <span class="track-duration">--:--</span>
+            <span class="track-more" aria-hidden="true">▶</span>
+          </button>
         </div>
       </section>
     </main>
 
     <footer class="player-bar" aria-label="Music player">
       <div class="now-playing">
-        <div class="mini-cover cover-citrus" aria-hidden="true"><span>DAY<br>GLOW</span></div>
-        <div class="now-playing-info"><strong>Golden</strong><span>Jill Scott</span></div>
-        <span class="player-heart" aria-hidden="true">♡</span>
+        <div class="mini-cover cover-citrus" id="now-playing-cover" aria-hidden="true"><span>t</span></div>
+        <div class="now-playing-info" aria-live="polite"><strong id="now-playing-title">Choose a song</strong><span id="now-playing-artist">Nothing playing</span></div>
       </div>
 
       <div class="player-controls" aria-label="Playback controls">
-        <div class="control-buttons" aria-hidden="true">
-          <span class="control-icon">⇄</span>
-          <span class="control-icon">|◀</span>
-          <span class="play-button">▶</span>
-          <span class="control-icon">▶|</span>
-          <span class="control-icon">↻</span>
+        <div class="control-buttons">
+          <button class="control-button" id="previous-track" type="button" aria-label="Previous track" title="Previous track">|◀</button>
+          <button class="play-button" id="toggle-playback" type="button" aria-label="Play" title="Play">▶</button>
+          <button class="control-button" id="next-track" type="button" aria-label="Next track" title="Next track">▶|</button>
         </div>
-        <div class="timeline"><span>1:24</span><div class="progress-track"><span></span></div><span>3:46</span></div>
+        <div class="timeline">
+          <span id="current-time">0:00</span>
+          <input class="progress-slider" id="track-progress" type="range" min="0" max="1000" value="0" step="1" aria-label="Track progress" disabled>
+          <span id="track-duration">0:00</span>
+        </div>
       </div>
 
       <div class="player-extras" aria-hidden="true">
         <span>☷</span><span>◖</span><div class="volume-track"><span></span></div>
       </div>
     </footer>
+    <audio id="audio-player" preload="metadata"></audio>
   </div>
 </body>
 </html>
