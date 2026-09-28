@@ -18,13 +18,13 @@
 
       <nav class="primary-nav" aria-label="Library">
         <p class="nav-heading">Your space</p>
-        <a class="nav-link active" href="#home" aria-current="page">
+        <a class="nav-link active" href="#home" data-view="home" aria-current="page">
           <span class="nav-icon" aria-hidden="true">⌂</span> Home
         </a>
         <a class="nav-link" href="#discover">
           <span class="nav-icon" aria-hidden="true">⌕</span> Discover
         </a>
-        <a class="nav-link" href="#library">
+        <a class="nav-link" href="#library" data-view="library">
           <span class="nav-icon" aria-hidden="true">▤</span> Your library
         </a>
       </nav>
@@ -56,54 +56,70 @@
       <section class="tracks-section" aria-labelledby="tracks-title">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">PICKED FOR YOU</p>
+            <p class="eyebrow" id="tracks-kicker">PICKED FOR YOU</p>
             <h2 id="tracks-title">On rotation</h2>
           </div>
-          <span class="track-count">05 TRACKS</span>
+          <span class="track-count" id="track-count">05 TRACKS</span>
         </div>
 
         <div class="track-list" aria-label="Songs">
-          <button class="track-row" type="button" data-track-index="0" data-title="Paper Orbit" data-artist="Mira Sol">
-            <span class="track-number">01</span>
-            <span class="cover cover-citrus" aria-hidden="true"><span>PAPER<br>ORBIT</span></span>
-            <span class="track-info"><strong>Paper Orbit</strong><span>Mira Sol</span></span>
-            <span class="track-album">Little Weather</span>
-            <span class="track-duration">--:--</span>
-            <span class="track-more" aria-hidden="true">▶</span>
-          </button>
-          <button class="track-row" type="button" data-track-index="1" data-title="Velvet Transit" data-artist="June Harbor">
-            <span class="track-number">02</span>
-            <span class="cover cover-blue" aria-hidden="true"><span>VELVET<br>TRANSIT</span></span>
-            <span class="track-info"><strong>Velvet Transit</strong><span>June Harbor</span></span>
-            <span class="track-album">Night Maps</span>
-            <span class="track-duration">--:--</span>
-            <span class="track-more" aria-hidden="true">▶</span>
-          </button>
-          <button class="track-row" type="button" data-track-index="2" data-title="Soft Static" data-artist="Orin Vale">
-            <span class="track-number">03</span>
-            <span class="cover cover-lilac" aria-hidden="true"><span>SOFT<br>STATIC</span></span>
-            <span class="track-info"><strong>Soft Static</strong><span>Orin Vale</span></span>
-            <span class="track-album">The Quiet Signal</span>
-            <span class="track-duration">--:--</span>
-            <span class="track-more" aria-hidden="true">▶</span>
-          </button>
-          <button class="track-row" type="button" data-track-index="3" data-title="After the Rain" data-artist="Marlow Bloom">
-            <span class="track-number">04</span>
-            <span class="cover cover-green" aria-hidden="true"><span>AFTER<br>THE RAIN</span></span>
-            <span class="track-info"><strong>After the Rain</strong><span>Marlow Bloom</span></span>
-            <span class="track-album">Rooms of Blue</span>
-            <span class="track-duration">--:--</span>
-            <span class="track-more" aria-hidden="true">▶</span>
-          </button>
-          <button class="track-row" type="button" data-track-index="4" data-title="Satellite Hearts" data-artist="Nia Wren">
-            <span class="track-number">05</span>
-            <span class="cover cover-rose" aria-hidden="true"><span>SATELLITE<br>HEARTS</span></span>
-            <span class="track-info"><strong>Satellite Hearts</strong><span>Nia Wren</span></span>
-            <span class="track-album">Anywhere Between</span>
-            <span class="track-duration">--:--</span>
-            <span class="track-more" aria-hidden="true">▶</span>
-          </button>
+          <div class="track-row" data-track-row>
+            <button class="track-select" type="button" data-track-index="0" data-title="Paper Orbit" data-artist="Mira Sol">
+              <span class="track-number">01</span>
+              <span class="cover cover-citrus" aria-hidden="true"><span>PAPER<br>ORBIT</span></span>
+              <span class="track-info"><strong>Paper Orbit</strong><span>Mira Sol</span></span>
+              <span class="track-album">Little Weather</span>
+              <span class="track-duration">--:--</span>
+              <span class="track-more" aria-hidden="true">▶</span>
+            </button>
+            <button class="like-button" type="button" data-track-index="0" aria-label="Like Paper Orbit" aria-pressed="false" title="Like Paper Orbit">♡</button>
+          </div>
+          <div class="track-row" data-track-row>
+            <button class="track-select" type="button" data-track-index="1" data-title="Velvet Transit" data-artist="June Harbor">
+              <span class="track-number">02</span>
+              <span class="cover cover-blue" aria-hidden="true"><span>VELVET<br>TRANSIT</span></span>
+              <span class="track-info"><strong>Velvet Transit</strong><span>June Harbor</span></span>
+              <span class="track-album">Night Maps</span>
+              <span class="track-duration">--:--</span>
+              <span class="track-more" aria-hidden="true">▶</span>
+            </button>
+            <button class="like-button" type="button" data-track-index="1" aria-label="Like Velvet Transit" aria-pressed="false" title="Like Velvet Transit">♡</button>
+          </div>
+          <div class="track-row" data-track-row>
+            <button class="track-select" type="button" data-track-index="2" data-title="Soft Static" data-artist="Orin Vale">
+              <span class="track-number">03</span>
+              <span class="cover cover-lilac" aria-hidden="true"><span>SOFT<br>STATIC</span></span>
+              <span class="track-info"><strong>Soft Static</strong><span>Orin Vale</span></span>
+              <span class="track-album">The Quiet Signal</span>
+              <span class="track-duration">--:--</span>
+              <span class="track-more" aria-hidden="true">▶</span>
+            </button>
+            <button class="like-button" type="button" data-track-index="2" aria-label="Like Soft Static" aria-pressed="false" title="Like Soft Static">♡</button>
+          </div>
+          <div class="track-row" data-track-row>
+            <button class="track-select" type="button" data-track-index="3" data-title="After the Rain" data-artist="Marlow Bloom">
+              <span class="track-number">04</span>
+              <span class="cover cover-green" aria-hidden="true"><span>AFTER<br>THE RAIN</span></span>
+              <span class="track-info"><strong>After the Rain</strong><span>Marlow Bloom</span></span>
+              <span class="track-album">Rooms of Blue</span>
+              <span class="track-duration">--:--</span>
+              <span class="track-more" aria-hidden="true">▶</span>
+            </button>
+            <button class="like-button" type="button" data-track-index="3" aria-label="Like After the Rain" aria-pressed="false" title="Like After the Rain">♡</button>
+          </div>
+          <div class="track-row" data-track-row>
+            <button class="track-select" type="button" data-track-index="4" data-title="Satellite Hearts" data-artist="Nia Wren">
+              <span class="track-number">05</span>
+              <span class="cover cover-rose" aria-hidden="true"><span>SATELLITE<br>HEARTS</span></span>
+              <span class="track-info"><strong>Satellite Hearts</strong><span>Nia Wren</span></span>
+              <span class="track-album">Anywhere Between</span>
+              <span class="track-duration">--:--</span>
+              <span class="track-more" aria-hidden="true">▶</span>
+            </button>
+            <button class="like-button" type="button" data-track-index="4" aria-label="Like Satellite Hearts" aria-pressed="false" title="Like Satellite Hearts">♡</button>
+          </div>
         </div>
+        <p class="empty-library" id="empty-library" hidden>No liked songs yet.</p>
       </section>
     </main>
 

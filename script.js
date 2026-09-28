@@ -1,5 +1,8 @@
 const audioPlayer = document.querySelector('#audio-player');
-const trackButtons = [...document.querySelectorAll('.track-row')];
+const trackButtons = [...document.querySelectorAll('.track-select')];
+const trackRows = [...document.querySelectorAll('[data-track-row]')];
+const likeButtons = [...document.querySelectorAll('.like-button')];
+const navLinks = [...document.querySelectorAll('.nav-link[data-view]')];
 const nowPlayingCover = document.querySelector('#now-playing-cover');
 const nowPlayingTitle = document.querySelector('#now-playing-title');
 const nowPlayingArtist = document.querySelector('#now-playing-artist');
@@ -9,8 +12,14 @@ const nextButton = document.querySelector('#next-track');
 const progressSlider = document.querySelector('#track-progress');
 const currentTimeLabel = document.querySelector('#current-time');
 const durationLabel = document.querySelector('#track-duration');
+const tracksKicker = document.querySelector('#tracks-kicker');
+const tracksTitle = document.querySelector('#tracks-title');
+const trackCount = document.querySelector('#track-count');
+const emptyLibrary = document.querySelector('#empty-library');
 
 let currentTrackIndex = -1;
+let currentView = 'home';
+const likedTracks = new Set();
 
 function formatTime(seconds) {
 	if (!Number.isFinite(seconds)) return '0:00';
@@ -40,6 +49,45 @@ function updateTimeline() {
 	if (currentTrackIndex !== -1 && Number.isFinite(duration)) {
 		trackButtons[currentTrackIndex].querySelector('.track-duration').textContent = formatTime(duration);
 	}
+}
+
+function updateLibrary() {
+	trackRows.forEach((row, index) => {
+		row.hidden = currentView === 'library' && !likedTracks.has(index);
+	});
+	emptyLibrary.hidden = currentView !== 'library' || likedTracks.size > 0;
+	const visibleCount = currentView === 'library' ? likedTracks.size : trackButtons.length;
+	trackCount.textContent = `${visibleCount} TRACK${visibleCount === 1 ? '' : 'S'}`;
+}
+
+function showView(view) {
+	currentView = view;
+	document.body.classList.toggle('library-view', view === 'library');
+	tracksKicker.textContent = view === 'library' ? 'SAVED SONGS' : 'PICKED FOR YOU';
+	tracksTitle.textContent = view === 'library' ? 'Your library' : 'On rotation';
+	navLinks.forEach((link) => {
+		const isActive = link.dataset.view === view;
+		link.classList.toggle('active', isActive);
+		if (isActive) link.setAttribute('aria-current', 'page');
+		else link.removeAttribute('aria-current');
+	});
+	updateLibrary();
+}
+
+function toggleLike(index) {
+	const likeButton = likeButtons[index];
+	const trackName = trackButtons[index].dataset.title;
+	const isLiked = likedTracks.has(index);
+
+	if (isLiked) likedTracks.delete(index);
+	else likedTracks.add(index);
+
+	likeButton.classList.toggle('is-liked', !isLiked);
+	likeButton.textContent = isLiked ? '♡' : '♥';
+	likeButton.setAttribute('aria-pressed', String(!isLiked));
+	likeButton.setAttribute('aria-label', `${isLiked ? 'Like' : 'Remove'} ${trackName}${isLiked ? '' : ' from Your library'}`);
+	likeButton.title = likeButton.getAttribute('aria-label');
+	updateLibrary();
 }
 
 async function startPlayback() {
@@ -83,6 +131,17 @@ trackButtons.forEach((button, index) => {
 	});
 });
 
+likeButtons.forEach((button, index) => {
+	button.addEventListener('click', () => toggleLike(index));
+});
+
+navLinks.forEach((link) => {
+	link.addEventListener('click', (event) => {
+		event.preventDefault();
+		showView(link.dataset.view);
+	});
+});
+
 playButton.addEventListener('click', () => {
 	if (currentTrackIndex === -1) {
 		selectTrack(0);
@@ -123,3 +182,4 @@ audioPlayer.addEventListener('error', () => {
 
 updatePlaybackButton();
 updateTimeline();
+updateLibrary();
